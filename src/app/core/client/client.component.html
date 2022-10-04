@@ -1,0 +1,43 @@
+  <section class="form-register">
+    <h4>Formulario Registro Clientes</h4>
+    <form [formGroup]="formClient">
+      <input class="controls" formControlName="name" type="text" name="name" id="name"
+        placeholder="Ingrese su Nombre" />
+      <input class="controls" formControlName="surname" type="text" name="surname" id="surname"
+        placeholder="Ingrese su Apellido" />
+      <input class="controls" formControlName="starting_point" type="text" name="starting_point" id="starting_point"
+        placeholder="Ingrese su punto de Inicio" />
+      <input class="controls" formControlName="final_point" type="text" name="final_point" id="final_point"
+        placeholder="Ingrese su punto Final" />
+      <input class="botons" type="button" (click)="flatEdit ? updateClient() : createClient()" value="{{flatEdit ? 'Actualizar' : 'Registrar'}}" />
+
+    </form>
+  </section>
+  <br /><br />
+  <div class="container text-center">
+    <table class="table table-responsive table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Punto de Salida</th>
+          <th>Punto de Llegada</th>
+          <th>Funcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of lisclient">
+          <td>{{ client.name }}</td>
+          <td>{{ client.surname }}</td>
+          <td>{{ client.starting_point }}</td>
+          <td>{{ client.final_point }}</td>
+
+          <td>
+            <input class="btn btn-success" type="button" (click)="editClient(client)" value="Editar" />
+            <input class="btn btn-danger" type="button" (click)="deleteClient(client)" value="Eliminar" />
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>

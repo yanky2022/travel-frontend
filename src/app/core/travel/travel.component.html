@@ -1,0 +1,61 @@
+
+<body>
+  <section class="form-register">
+    <h4>Formulario Registro Viajes</h4>
+    <form [formGroup]="formTravel">
+      <input class="controls"formControlName="starting_point" type="text" name="starting_point" id="starting_point"
+      placeholder="Ingrese su starting_point">
+    <input class="controls" formControlName="final_point" type="text" name="final_point" id="final_point" placeholder="Ingrese su final_point">
+    <input class="controls"formControlName="race_price" type="number" name="race_price" id="race_price" placeholder="Ingrese el Precio">
+    <input class="botons" type="button" (click)="createTravel()" value="Registrar" />
+    </form>
+  </section>
+  <br><br>
+  <div class="container text-center">
+    <h4>Viajes sin Asignar</h4>
+    <table class="table table-responsive table-bordered">
+      <thead>
+            <tr>
+                <th>Punto de Salida</th>
+                <th>Punto de Llegada</th>
+                <th>Cliente</th>
+                <th>Funcion</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let travel of lisTravelOutAssigne" >
+            <td>{{travel.starting_point}}</td>
+            <td>{{travel.final_point}}</td>
+            <td>{{travel.name + ' ' + travel.surname}}</td>
+           <td>
+            <input class="btn btn-success" type="button" (click)="assigneTravel(travel)" value="Asignar" />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="container text-center">
+    <h4>Viajes Asignados segun el usuario</h4>
+    <table class="table table-responsive table-bordered">
+      <thead>
+            <tr>
+                <th>Punto de Salida</th>
+                <th>Punto de Llegada</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let travel of lisTravelOutAssigneT" >
+            <td>{{travel.starting_point}}</td>
+            <td>{{travel.final_point}}</td>
+            <td>{{travel.race_price}}</td>
+           <td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+
+</body>

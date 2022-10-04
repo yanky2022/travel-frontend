@@ -1,0 +1,50 @@
+
+  <section class="form-register" float-right *ngIf="profile === 'Administrador'">
+    <h4>Formulario Registro Vehiculo</h4>
+    <form [formGroup]="formCar">
+    <input class="controls" formControlName="ability" type="text" name="ability" id="ability" placeholder="Ingrese su Capacidad">
+    <input class="controls" formControlName="cylinder_capacity" type="text" name="cylinder_capacity" id="cylinder_capacity"
+      placeholder="Ingrese su Cilindraje">
+      <input class="controls" formControlName="soat_date" type="text" name="soat_date" id="soat_date" placeholder="Ingrese la fecha de Soat">
+    <input class="controls" formControlName="operation_card_date" type="text" name="operation_card_date" id="operation_card_date"
+      placeholder="Ingrese la Fecha de Tarjeta de Operación">
+    <input class="controls" formControlName="license_plate" type="text" name="license_plate" id="license_plate" placeholder="Ingrese la placa">
+    <select class="form-select controls" formControlName="owner" >
+      <option selected>Seleccionar propietario</option>
+      <option *ngFor="let user of lisuser" value="{{user._id}}">{{user.name + ' ' + user.surname}}</option>
+    </select>
+
+    <input class="botons" type="button" (click)="flatEdit ? updateCar() : createCar()" value="{{flatEdit ? 'Actualizar' : 'Registrar'}}" />
+  </form>
+  </section>
+    <br><br>
+  <div class="container text-center">
+    <table class="table table-responsive table-bordered">
+      <thead>
+            <tr>
+                <th>Capacidad</th>
+                <th>Cilindraje</th>
+                <th>Fecha de Soat</th>
+                <th>Fecha de operacion</th>
+                <th>Licencia</th>
+                <th *ngIf="profile === 'Administrador'">Funcion</th>
+
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of liscar" >
+            <td>{{car.ability}}</td>
+            <td>{{car.cylinder_capacity}}</td>
+            <td>{{car.soat_date}}</td>
+            <td>{{car.operation_card_date}}</td>
+            <td>{{car.license_plate}}</td>
+            <td>
+              <input *ngIf="profile === 'Administrador'" class="btn btn-success " type="button" (click)="editCar(car)" value="Editar" />
+              <input *ngIf="profile === 'Administrador'" class="btn btn-danger" type="button" (click)="deleteCar(car)" value="Eliminar" />
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+

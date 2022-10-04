@@ -1,0 +1,61 @@
+<body>
+  <section class="form-register">
+    <h4>Formulario Registro Usuario</h4>
+    <form [formGroup]="formUser">
+      <input class="controls" formControlName="name" type="text" name="name" id="name" placeholder="Ingrese su Nombre" />
+      <input class="controls" formControlName="surname" type="text" name="surname" id="surname" placeholder="Ingrese su Apellido" />
+      <input class="controls" formControlName="document_type" type="text" name="document_type" id="document_type"
+        placeholder="Ingrese el tipo de Documento" />
+      <input class="controls" formControlName="number" type="text" name="number" id="number" placeholder="Ingrese el Numero" />
+      <input class="controls" formControlName="user" type="text" name="user" id="user" placeholder="Ingrese su Usuario" />
+      <input class="controls" formControlName="passport" type="password" name="password" id="password" placeholder="Ingrese su Contraseña" />
+      <input class="controls" formControlName="email" type="email" name="email" id="email" placeholder="Ingrese su Correo" />
+      <select class="form-select controls" formControlName="profile">
+        <option selected>Seleccionar perfil</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Propietario">Propietario</option>
+        <option value="Cliente">Cliente</option>
+      </select>
+
+      <input class="botons" type="button" (click)="flatEdit ? updateUser() : createUser()" value="{{flatEdit ? 'Actualizar' : 'Registrar'}}" />
+
+    </form>
+  </section>
+  <br /><br />
+  <div class="container text-center">
+    <table class="table table-responsive table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Tipo de Documento</th>
+          <th>Numero de Documento</th>
+          <th>Usuario</th>
+          <th>Contraseña</th>
+          <th>Email</th>
+          <th>Perfil</th>
+          <th>Funcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of lisuser">
+          <td>{{ user.name }}</td>
+          <td>{{ user.surname }}</td>
+          <td>{{ user.document_type }}</td>
+          <td>{{ user.number }}</td>
+          <td>{{ user.user }}</td>
+          <td>{{ user.passport }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.profile }}</td>
+
+
+          <td>
+            <input class="btn btn-success" type="button" (click)="editUser(user)" value="Editar" />
+            <input class="btn btn-danger" type="button" (click)="deleteUser(user)" value="Eliminar" />
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</body>
